@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Apartment do
   let!(:new_apartment) {Apartment.new("430 Maple Ln.", "Amity", "97101", 1400)}
+  let! (:new_occupant) {Occupant.new("Marcy", "Mayer")}
 
   it "Is an Apartment object" do
     expect(new_apartment).to be_a(Apartment)
@@ -28,10 +29,10 @@ describe Apartment do
   end
 
   it "Adds a new roommate when not full" do
-    expect(new_apartment.add_roommate).to eq(1)
+    expect(new_apartment.add_roommate(new_occupant)).to eq(1)
   end
 
   it "Removes roommates" do
-    expect(Apartment.new("430 Maple Ln.", "Amity", "97101", 1400, 3).remove_roommate).to eq(2)
+    expect(Apartment.new("430 Maple Ln.", "Amity", "97101", 1400, 3).remove_roommate(new_occupant)).to eq(2)
   end
 end

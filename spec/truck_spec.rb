@@ -31,6 +31,6 @@ describe Truck do
     new_truck.unload_all_occupant(new_occupant)
     new_truck.unload_all_occupant(new_occupant)
 
-    expect(new_truck.current_load).to eq(1)
+    expect(new_truck.current_capacity).to eq(1)
   end
 end

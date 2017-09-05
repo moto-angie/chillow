@@ -1,35 +1,31 @@
 class Apartment
-  attr_reader :address, :city, :zip, :rent, :lease_start_date, :lease_end_date, :renters
+  include Actions
+  attr_reader :address, :city, :zip, :rent, :lease_start_date, :lease_end_date, :current_capacity
 
-  def initialize(address, city, zip, rent, renters = 0, max_renters = 3)
+  def initialize(address, city, zip, rent, current_capacity = 0, max_capacity = 3)
     @address = address
     @city = city
     @zip = zip
     @rent = rent
-    @renters = renters
-    @max_renters = max_renters
+    @current_capacity = current_capacity
+    @max_capacity = max_capacity
+    @roommates = []
   end
 
-  def full?
-    if @renters >= 3
-      true
-    else
-      false
-    end
-  end
-
-  def add_roommate
+  def add_roommate(occupant)
     if self.full?
       raise "Sorry, this apartment is full."
     else
-      @renters += 1
-      puts "One roommate added! This apartment now has #{@renters} renters."
-      @renters
+      @current_capacity += 1
+      @roommates << occupant
+      puts "One roommate added! This apartment now has #{@current_capacity} renters."
+      @current_capacity
     end
   end
 
-  def remove_roommate
-    @renters -= 1
-    @renters
+  def remove_roommate(occupant)
+    @current_capacity -= 1
+    @roommates.delete(occupant)
+    @current_capacity
   end
 end
