@@ -1,4 +1,9 @@
-class Box
-end
+require_relative "occupant"
 
-# stores the name of its owner, which should be an `Occupant` object) and stores these `Box` objects in an array
+class Box
+  attr_reader :owner
+
+  def initialize(owner)
+    @owner = owner
+  end
+end
